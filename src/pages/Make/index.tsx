@@ -37,7 +37,8 @@ function Make() {
 		longitude: currentCoordinate.longitude,
 	});
 
-	const { min: timeDeltaMinutes, setMin: setTimeDeltaMinutes } = useMinStore();
+	const min = useMinStore((state) => state.min);
+	const setMin = useMinStore((state) => state.setMin);
 
 	const loading = isCoordinateLoading || isAddressLoading;
 
@@ -77,7 +78,7 @@ function Make() {
 							{getCurrentTime()}
 						</Text>
 						<Text fontSize={20} fontWeight={700}>
-							{getCurrentTime(timeDeltaMinutes)}
+							{getCurrentTime(min)}
 						</Text>
 					</Flex>
 					<ArrowSVG />
@@ -106,10 +107,7 @@ function Make() {
 				</Flex>
 			</Box>
 
-			<BottomSheet
-				timeDeltaMinutes={timeDeltaMinutes}
-				setTimeDeltaMinutes={setTimeDeltaMinutes}
-			/>
+			<BottomSheet timeDeltaMinutes={min} setTimeDeltaMinutes={setMin} />
 		</Layout>
 	);
 }
