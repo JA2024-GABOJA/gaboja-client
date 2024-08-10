@@ -139,6 +139,8 @@ function BottomSheet({
     setTimeDeltaMinutes(value);
   };
 
+  const { min } = useMinStore();
+
   const navigate = useNavigate();
   const haneleNavigate = () => {
     navigate(ROUTER.VIEW_SANCHAEK);
@@ -180,8 +182,8 @@ function BottomSheet({
       <Box pt={4} pb={2} w="100%" mb={'72px'} px={4}>
         <Slider
           aria-label="time-slider"
-          defaultValue={0}
           min={0}
+          defaultValue={min}
           max={120}
           step={15}
           onChange={handleChange}
