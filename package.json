@@ -10,8 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@deck.gl/core": "^9.0.27",
+    "@deck.gl/layers": "^9.0.27",
+    "@deck.gl/react": "^9.0.27",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@luma.gl/engine": "^9.0.23",
+    "@mapbox/mapbox-sdk": "^0.16.0",
     "@types/mapbox-gl": "^3.4.0",
     "mapbox-gl": "^3.5.2",
     "react": "^18.3.1",
