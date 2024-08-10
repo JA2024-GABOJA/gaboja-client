@@ -1,8 +1,9 @@
 import { Box } from '@chakra-ui/react';
 import type { GeoJsonLayer } from '@deck.gl/layers';
 import { DeckGL } from '@deck.gl/react';
-import { Map as MapGL } from 'react-map-gl';
+import { GeolocateControl, Map as MapGL, Marker } from 'react-map-gl';
 import type { ICoordinate } from '../types';
+import { useRef } from 'react';
 
 interface IMapBoxProps {
   defaultCoordinate: ICoordinate;
@@ -38,8 +39,7 @@ function MapView({
         <MapGL
           mapStyle={'mapbox://styles/mapbox/streets-v9'}
           mapboxAccessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
-          attributionControl={false}
-        />
+        ></MapGL>
       </DeckGL>
     </Box>
   );
