@@ -1,96 +1,103 @@
-import styled from '@emotion/styled';
-import FootIcon from '../../assets/icons/FootIcon';
-import Tooltip from '@components/Tooltip';
-import ProfileIcon from '@/assets/icons/ProfileIcon';
+import ProfileIcon from "@/assets/icons/ProfileIcon";
+import ROUTER from "@/constants/router";
+import Tooltip from "@components/Tooltip";
+import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
+import FootIcon from "../../assets/icons/FootIcon";
 
 const BottomNavigation = () => {
-  return (
-    <BottomNavigationWrapper>
-      <nav>
-        <FootIcon />
-        <p>My Jup-gging</p>
-      </nav>
+	return (
+		<BottomNavigationWrapper>
+			<nav>
+				<FootIcon />
+				<p>My Jup-gging</p>
+			</nav>
 
-      <StartButton />
+			<StartButton />
 
-      <nav>
-        <ProfileIcon />
-        <p>Profile</p>
-      </nav>
-    </BottomNavigationWrapper>
-  );
+			<nav>
+				<ProfileIcon />
+				<p>Profile</p>
+			</nav>
+		</BottomNavigationWrapper>
+	);
 };
 
 export default BottomNavigation;
 
 const StartButton = () => {
-  return (
-    <StartButtonWrapper>
-      <Tooltip content="Let’s go Jup-gging!" defaultVisible={true}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="129"
-          height="129"
-          viewBox="0 0 129 129"
-          fill="none"
-        >
-          <g filter="url(#filter0_d_32_2057)">
-            <circle cx="64.5" cy="64.5" r="53.5" fill="#F1755B" />
-            <circle
-              cx="64.5"
-              cy="64.5"
-              r="52"
-              stroke="white"
-              stroke-width="3"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_d_32_2057"
-              x="0.7"
-              y="0.7"
-              width="127.6"
-              height="127.6"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix
-                in="SourceAlpha"
-                type="matrix"
-                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                result="hardAlpha"
-              />
-              <feMorphology
-                radius="3"
-                operator="dilate"
-                in="SourceAlpha"
-                result="effect1_dropShadow_32_2057"
-              />
-              <feOffset />
-              <feGaussianBlur stdDeviation="3.65" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix
-                type="matrix"
-                values="0 0 0 0 0.898039 0 0 0 0 0.392157 0 0 0 0 0.278431 0 0 0 0.33 0"
-              />
-              <feBlend
-                mode="normal"
-                in2="BackgroundImageFix"
-                result="effect1_dropShadow_32_2057"
-              />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="effect1_dropShadow_32_2057"
-                result="shape"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </Tooltip>
-    </StartButtonWrapper>
-  );
+	const navigation = useNavigate();
+	return (
+		<StartButtonWrapper
+			onClick={() => {
+				navigation(ROUTER.MAKE_SANCHAEK);
+			}}
+		>
+			<Tooltip content="Let’s go Jup-gging!" defaultVisible={true}>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="129"
+					height="129"
+					viewBox="0 0 129 129"
+					fill="none"
+				>
+					<g filter="url(#filter0_d_32_2057)">
+						<circle cx="64.5" cy="64.5" r="53.5" fill="#F1755B" />
+						<circle
+							cx="64.5"
+							cy="64.5"
+							r="52"
+							stroke="white"
+							stroke-width="3"
+						/>
+					</g>
+					<defs>
+						<filter
+							id="filter0_d_32_2057"
+							x="0.7"
+							y="0.7"
+							width="127.6"
+							height="127.6"
+							filterUnits="userSpaceOnUse"
+							color-interpolation-filters="sRGB"
+						>
+							<feFlood flood-opacity="0" result="BackgroundImageFix" />
+							<feColorMatrix
+								in="SourceAlpha"
+								type="matrix"
+								values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+								result="hardAlpha"
+							/>
+							<feMorphology
+								radius="3"
+								operator="dilate"
+								in="SourceAlpha"
+								result="effect1_dropShadow_32_2057"
+							/>
+							<feOffset />
+							<feGaussianBlur stdDeviation="3.65" />
+							<feComposite in2="hardAlpha" operator="out" />
+							<feColorMatrix
+								type="matrix"
+								values="0 0 0 0 0.898039 0 0 0 0 0.392157 0 0 0 0 0.278431 0 0 0 0.33 0"
+							/>
+							<feBlend
+								mode="normal"
+								in2="BackgroundImageFix"
+								result="effect1_dropShadow_32_2057"
+							/>
+							<feBlend
+								mode="normal"
+								in="SourceGraphic"
+								in2="effect1_dropShadow_32_2057"
+								result="shape"
+							/>
+						</filter>
+					</defs>
+				</svg>
+			</Tooltip>
+		</StartButtonWrapper>
+	);
 };
 
 const StartButtonWrapper = styled.div`

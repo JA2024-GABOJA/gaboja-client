@@ -29,6 +29,25 @@ const CreateRoutePage = () => {
 	});
 	console.log(walkingPathPoints);
 
+	// mean longitute and latitude of the path
+	const centroids = useMemo(() => {
+		const points = walkingPathPoints ?? [];
+		const sum = points.reduce(
+			(acc, point) => {
+				return {
+					latitude: acc.latitude + point.latitude,
+					longitude: acc.longitude + point.longitude,
+				};
+			},
+			{ latitude: 0, longitude: 0 },
+		) ?? { latitude: 0, longitude: 0 };
+
+		return {
+			latitude: sum.latitude / points.length,
+			longitude: sum.longitude / points.length,
+		};
+	}, [walkingPathPoints]);
+
 	const numHearts = useMemo(() => {
 		return (
 			walkingPathPoints?.filter((point) => point.type === "target").length ?? 0
@@ -63,8 +82,12 @@ const CreateRoutePage = () => {
 					height: "100%",
 					position: "relative",
 				}}
-				defaultCoordinate={currentCoordinate}
-				zoom={15}
+				defaultCoordinate={
+					centroids.latitude && centroids.longitude
+						? centroids
+						: currentCoordinate
+				}
+				zoom={14.3}
 				layers={allLayers}
 			/>
 
