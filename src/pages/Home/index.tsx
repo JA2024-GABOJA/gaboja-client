@@ -6,9 +6,12 @@ import ChevronIcon from '../../assets/icons/ChevronIcon';
 import PointIcon from '../../assets/icons/PointIcon';
 import { DEFAULT_COORDINATES } from '@/constants';
 import useGetAddress from '@/hooks/useGetAddress';
+import { useNavigation } from 'react-router-dom';
+
 const Background = styled.img`
   position: absolute;
   width: 100dvh;
+  height: calc(100dvh - 96px);
   left: 0;
   top: 0;
   z-index: 1;
@@ -20,8 +23,12 @@ const HomePage = () => {
   });
 
   return (
-    <Layout>
-      <Background src={'./home.png'} />
+    <Layout
+      style={{
+        backgroundColor: '#79C6B5',
+      }}
+    >
+      <Background src={'./home.jpeg'} />
       <div
         style={{
           position: 'relative',

@@ -3,17 +3,23 @@ import ClockIcon from '@/assets/clock.svg?react';
 import { useMinStore } from '@/store';
 import PointIcon from '@/assets/icons/PointIcon';
 
-import ChevronForward from '@/assets/icons/ChevronIcon';
 import dayjs from 'dayjs';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import ChevronIcon from '@/assets/icons/ChevronIcon';
+import { useNavigate } from 'react-router-dom';
 
 const StartCreateRoute = ({
   onJuggingStart,
+  numHearts,
+  addressText,
 }: {
+  addressText: string;
+  numHearts: number;
   onJuggingStart: () => void;
 }) => {
   return (
     <>
-      <FixedTopHeader />
+      <FixedTopHeader addressText={addressText} numHearts={numHearts} />
       <FloatingButton onClick={onJuggingStart}>Start Jup-gging</FloatingButton>
     </>
   );
@@ -21,20 +27,31 @@ const StartCreateRoute = ({
 
 export default StartCreateRoute;
 
-const FixedTopHeader = () => {
+const FixedTopHeader = ({
+  addressText,
+  numHearts,
+}: {
+  addressText: string;
+  numHearts: number;
+}) => {
   const { min } = useMinStore();
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <FixedHeader>
       <HeaderContainer>
         <AddressText>
-          <ChevronForward />
+          <IoChevronBack onClick={handleBack} color="#fff" size={20} />
           <PointIcon color={'#FFFFFF'} />
-
-          <p>2 Sangdaero, Namgu, Pohang-si</p>
+          <p>{addressText}</p>
         </AddressText>
         <TimeIndicator startTime={new Date().getTime()} duration={min} />
       </HeaderContainer>
-      <CountHeart number={3} />
+      <CountHeart number={numHearts} />
     </FixedHeader>
   );
 };

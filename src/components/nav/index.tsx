@@ -2,8 +2,14 @@ import styled from '@emotion/styled';
 import FootIcon from '../../assets/icons/FootIcon';
 import Tooltip from '@components/Tooltip';
 import ProfileIcon from '@/assets/icons/ProfileIcon';
+import { useNavigate } from 'react-router-dom';
+import ROUTER from '@/constants/router';
 
 const BottomNavigation = () => {
+  const navigation = useNavigate();
+  const handleNavigation = () => {
+    navigation(ROUTER.MAKE_SANCHAEK);
+  };
   return (
     <BottomNavigationWrapper>
       <nav>
@@ -11,7 +17,7 @@ const BottomNavigation = () => {
         <p>My Jup-gging</p>
       </nav>
 
-      <StartButton />
+      <StartButton onClick={handleNavigation} />
 
       <nav>
         <ProfileIcon />
@@ -23,11 +29,12 @@ const BottomNavigation = () => {
 
 export default BottomNavigation;
 
-const StartButton = () => {
+const StartButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <StartButtonWrapper>
       <Tooltip content="Let’s go Jup-gging!" defaultVisible={true}>
         <svg
+          onClick={onClick}
           xmlns="http://www.w3.org/2000/svg"
           width="129"
           height="129"

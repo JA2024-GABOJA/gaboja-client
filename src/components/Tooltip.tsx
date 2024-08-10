@@ -79,6 +79,8 @@ const TooltipContent = styled(motion.div)`
     border-bottom: 8px solid rgba(49, 118, 177, 0.8);
     border-left: 7px solid white;
     border-right: 7px solid white;
+
+    background-color: transparent;
     content: '';
 
     height: 0;
