@@ -1,16 +1,16 @@
-import { Box, Text } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import ArrowSVG from "../../assets/timeStreamArrow.svg?react";
-import { MapView } from "../../components";
-import { Layout } from "../../components/layout";
-import { DEFAULT_COORDINATES } from "../../constants";
-import { useCurrentPositionLayer } from "../../hooks";
+import ArrowSVG from "@/assets/timeStreamArrow.svg?react";
+import { MapView } from "@/components";
+import { Layout } from "@/components/layout";
+import { DEFAULT_COORDINATES } from "@/constants";
+import { useCurrentPositionLayer } from "@/hooks";
 import {
 	convertCoordinatetoAddress,
 	getCurrentCoordinate,
 	getTodayString,
-} from "../../utils";
+} from "@/utils";
+import { Box, Text } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 function Make() {
 	const { data: currentCoordinate, isLoading: isCoordinateLoading } = useQuery({
