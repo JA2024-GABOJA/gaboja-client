@@ -8,7 +8,8 @@ async function convertCoordinatetoAddress(coordinate: ICoordinate) {
 	);
 	const data = await response.json();
 	const address: string = data.features[0].properties.full_address;
-	return address;
+	const addresses = address.split(",");
+	return [addresses[0], addresses.slice(1, -2).join(",")];
 }
 
 export default convertCoordinatetoAddress;

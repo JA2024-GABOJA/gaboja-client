@@ -1,7 +1,6 @@
 function getCurrentTime(minuteDelta = 0) {
-	// 현재 시간에서 minuteDelta만큼 뺀 시간을 HH:MM AM(PM) format으로 반환한다.
 	const now = new Date();
-	now.setMinutes(now.getMinutes() - minuteDelta);
+	now.setMinutes(now.getMinutes() + minuteDelta);
 
 	let hours = now.getHours();
 	const minutes = now.getMinutes();
