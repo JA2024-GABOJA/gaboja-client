@@ -6,5 +6,7 @@ export const Layout = styled.div`
   height: 100svh;
   margin: 0 auto;
 
+  padding: 24px;
+
   position: relative;
 `;

@@ -1,20 +1,21 @@
 import styled from '@emotion/styled';
 import FootIcon from '../../assets/icons/FootIcon';
 import Tooltip from '../Tooltip';
+import ProfileIcon from '../../assets/icons/ProfileIcon';
 
 const BottomNavigation = () => {
   return (
     <BottomNavigationWrapper>
       <nav>
         <FootIcon />
-        <p>내 줍깅기록</p>
+        <p>My Jup-gging</p>
       </nav>
 
       <StartButton />
 
       <nav>
-        <FootIcon />
-        <p>내 정보</p>
+        <ProfileIcon />
+        <p>Profile</p>
       </nav>
     </BottomNavigationWrapper>
   );
@@ -25,7 +26,7 @@ export default BottomNavigation;
 const StartButton = () => {
   return (
     <StartButtonWrapper>
-      <Tooltip content="Let’s go Jup-gging!">
+      <Tooltip content="Let’s go Jup-gging!" defaultVisible={true}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="129"
@@ -124,28 +125,36 @@ const BottomNavigationWrapper = styled.div`
   max-width: 420px;
   display: flex;
   bottom: 0;
+  left: 0;
 
   width: 100%;
   padding: 13px 44px 21px 43px;
   justify-content: space-between;
+  align-items: center;
 
   border-radius: 20px 20px 0px 0px;
   background: var(--Backgrounds-Primary, #fff);
   box-shadow: 0px 4px 43.1px 0px rgba(0, 0, 0, 0.25);
 
   nav {
-    width: 70px;
-    height: 56px;
+    width: 105px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     color: #000;
 
     text-align: center;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: 'AppleSDGothicNeoEB00';
-    font-size: 14px;
+    font-family: 'San Francisco';
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 20px; /* 142.857% */
     letter-spacing: -0.23px;
+
+    p {
+      margin-top: 4px;
+    }
   }
 `;

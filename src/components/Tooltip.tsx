@@ -6,10 +6,15 @@ import CloseIcon from '../assets/icons/CloseIcon';
 export type TooltipProps = {
   content: string;
   children: React.ReactNode;
+  defaultVisible?: boolean;
 };
 
-const Tooltip = ({ content, children }: TooltipProps) => {
-  const [visible, setVisible] = useState(false);
+const Tooltip = ({
+  content,
+  children,
+  defaultVisible = false,
+}: TooltipProps) => {
+  const [visible, setVisible] = useState(defaultVisible);
 
   const showTooltip = () => setVisible(true);
   const hideTooltip = () => setVisible(false);
