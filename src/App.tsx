@@ -1,23 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import useGeo from "./hooks/useGeo.ts";
-import Map from "./lib/map";
+import './App.css';
+import MapBox from './lib/map';
 
 function App() {
-  const [count, setCount] = useState(0)
-const {coords,timestamp , } = useGeo();
   return (
     <>
-<Map
-  initialViewState={{
-  longitude: coords?.longitude || 0,
-    latitude: coords?.latitude || 0,
-  }}
-  />
+      <MapBox
+        initialViewState={{
+          longitude: 129.284883,
+          latitude: 35.825552,
+          zoom: 14,
+        }}
+        style={{ width: 600, height: 400 }}
+        onGeolocate={(e) => {
+          console.log(e);
+        }}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
