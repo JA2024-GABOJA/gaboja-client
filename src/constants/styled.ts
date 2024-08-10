@@ -102,6 +102,7 @@ export const resetCSS = css`
   body {
     margin: 0;
     background-color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   button {
