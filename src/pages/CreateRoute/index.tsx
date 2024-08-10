@@ -4,16 +4,50 @@ import ChevronForward from '@/assets/IoChevronForwardOutline.svg?react';
 import PointIcon from '@/assets/icons/PointIcon';
 import dayjs from 'dayjs';
 import ClockIcon from '@/assets/clock.svg?react';
+import MapView from '@components/MapView';
 
 const CreateRoutePage = () => {
   return (
-    <Layout>
+    <Layout $padding={'0'}>
       <FixedTopHeader />
+      <MapView
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+        }}
+        defaultCoordinate={{ latitude: 36.032, longitude: 129.365 }}
+        zoom={15}
+      />
+
       <FloatingButton>Start Jup-gging</FloatingButton>
     </Layout>
   );
 };
 
+const CountHeart = ({ number }: { number: number }) => {
+  return <StyledCountHeart>Discover {number} hearts!</StyledCountHeart>;
+};
+
+const StyledCountHeart = styled.div`
+  border-radius: 10px;
+  background: hsla(0, 0%, 20.784313725490197%, 0.7);
+  color: #fff;
+
+  margin-top: 15px;
+
+  width: 100%;
+  transform: translateX(-50%);
+  max-width: 380px;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 510;
+  line-height: 20px; /* 100% */
+
+  padding: 20px 0;
+`;
 export default CreateRoutePage;
 
 interface TimeIndicatorProps {
@@ -68,15 +102,18 @@ const TimeTextWrapper = styled.div`
 
 const FixedTopHeader = () => {
   return (
-    <FixedBottomFooter>
-      <AddressText>
-        <ChevronForward />
-        <PointIcon color={'#FFFFFF'} />
+    <FixedHeader>
+      <HeaderContainer>
+        <AddressText>
+          <ChevronForward />
+          <PointIcon color={'#FFFFFF'} />
 
-        <p>2 Sangdaero, Namgu, Pohang-si</p>
-      </AddressText>
-      <TimeIndicator startTime={new Date().getTime()} duration={45} />
-    </FixedBottomFooter>
+          <p>2 Sangdaero, Namgu, Pohang-si</p>
+        </AddressText>
+        <TimeIndicator startTime={new Date().getTime()} duration={45} />
+      </HeaderContainer>
+      <CountHeart number={3} />
+    </FixedHeader>
   );
 };
 
@@ -136,12 +173,17 @@ const AddressText = styled.div`
   letter-spacing: -0.23px;
 `;
 
-const FixedBottomFooter = styled.div`
+const FixedHeader = styled.div`
   position: fixed;
+  z-index: 10;
   width: 100%;
   max-width: 420px;
   top: 0;
   left: 50%;
+`;
+
+const HeaderContainer = styled.div`
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   transform: translate(-50%, 0);
   background-color: #3176b1;
   padding: 20px 24px;
