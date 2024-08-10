@@ -41,7 +41,7 @@ export default function useWalkingPathLayer({
 				stroked: true,
 				filled: false,
 				lineWidthMinPixels: 4,
-				getLineColor: [255, 0, 0, 255],
+				getLineColor: [229, 100, 71, 255],
 			}),
 		];
 	}, [data]);

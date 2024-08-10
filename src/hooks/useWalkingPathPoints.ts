@@ -16,7 +16,10 @@ export default function useWalkingPathPoints({
 		queryKey: ["walkingPathPoints"],
 		queryFn: async () => {
 			const response = await fetch(
-				`${ENDPOINT}?longitude=${currentCoordinate.longitude}&latitude=${currentCoordinate.latitude}&duration=${walkingDurationSeconds}`,
+				`${ENDPOINT}?longitude=${currentCoordinate.longitude}&latitude=${currentCoordinate.latitude}&walking_duration_sec=${walkingDurationSeconds}`,
+			);
+			console.log(
+				`${ENDPOINT}?longitude=${currentCoordinate.longitude}&latitude=${currentCoordinate.latitude}&walking_duration_sec=${walkingDurationSeconds}`,
 			);
 			if (!response.ok) {
 				throw new Error("Failed to fetch walking path data");

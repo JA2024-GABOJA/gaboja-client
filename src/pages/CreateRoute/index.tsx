@@ -4,16 +4,17 @@ import PointIcon from "@/assets/icons/PointIcon";
 import {
 	useCurrentAddress,
 	useCurrentCoordinate,
-	useCurrentPositionLayer,
 	useWalkingPathLayer,
 	useWalkingPathPoints,
 } from "@/hooks";
+import useCoordinatesLayer from "@/hooks/useCoordinatesLayer";
 import { useMinStore } from "@/store";
 import { Text } from "@chakra-ui/react";
 import MapView from "@components/MapView";
 import { Layout } from "@components/layout";
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
+import { useMemo } from "react";
 
 const CreateRoutePage = () => {
 	const { currentCoordinate } = useCurrentCoordinate();
@@ -24,19 +25,23 @@ const CreateRoutePage = () => {
 
 	const { walkingPathPoints } = useWalkingPathPoints({
 		currentCoordinate,
-		walkingDurationSeconds: walkingDurationMinutes * 60,
+		walkingDurationSeconds: walkingDurationMinutes * 60 * 2,
 	});
+	console.log(walkingPathPoints);
+
+	const numHearts = useMemo(() => {
+		return (
+			walkingPathPoints?.filter((point) => point.type === "target").length ?? 0
+		);
+	}, [walkingPathPoints]);
 
 	const { layers: pathLayer, pathLoading } = useWalkingPathLayer({
 		walkingPathPoints: walkingPathPoints ?? [],
 	});
 
-	const positionLayer = useCurrentPositionLayer({
-		latitude: currentCoordinate.latitude,
-		longitude: currentCoordinate.longitude,
-	});
+	const coordinatesLayer = useCoordinatesLayer(walkingPathPoints ?? []);
 
-	const allLayers = [...pathLayer, ...positionLayer];
+	const allLayers = [...pathLayer, coordinatesLayer];
 	console.log(pathLayer);
 	return (
 		<Layout $padding={"0"}>
@@ -50,7 +55,7 @@ const CreateRoutePage = () => {
 					</AddressText>
 					<TimeIndicator startTime={new Date().getTime()} duration={45} />
 				</HeaderContainer>
-				<CountHeart number={3} />
+				<CountHeart number={numHearts} />
 			</FixedHeader>
 			<MapView
 				style={{
