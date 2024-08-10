@@ -5,4 +5,6 @@ export const Layout = styled.div`
   background-color: #fff;
   height: 100svh;
   margin: 0 auto;
+
+  position: relative;
 `;
