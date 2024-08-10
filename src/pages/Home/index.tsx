@@ -4,12 +4,19 @@ import BottomNavigation from '../../components/nav';
 import WeatherBanner from '../../components/WeatherBanner';
 import ChevronIcon from '../../assets/icons/ChevronIcon';
 import PointIcon from '../../assets/icons/PointIcon';
+import { DEFAULT_COORDINATES } from '@/constants';
+import useGetAddress from '@/hooks/useGetAddress';
 
 const HomePage = () => {
+  const { data } = useGetAddress({
+    latitude: DEFAULT_COORDINATES[0],
+    longitude: DEFAULT_COORDINATES[1],
+  });
+
   return (
     <Layout>
       <AddressText>
-        <PointIcon /> Pohang-si, Gyeongbuk
+        <PointIcon /> {data.split(',').slice(0, 2).join(',')}
       </AddressText>
 
       <WeatherBanner />
@@ -49,8 +56,6 @@ const AddressText = styled.div`
 const SubTitleButton = styled.button`
   margin-top: 13px;
   color: var(--dark-gray, #717171);
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: 'SF Pro';
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -69,7 +74,6 @@ const HomeTitle = styled.h1`
   margin-top: 30px;
 
   font-feature-settings: 'liga' off, 'clig' off;
-  font-family: 'SF Pro';
   font-size: 32px;
   font-style: normal;
   font-weight: 600;

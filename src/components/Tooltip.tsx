@@ -61,9 +61,9 @@ const TooltipContent = styled(motion.div)`
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
-  background-color: #3176b1;
+  background-color: rgba(49, 118, 177, 0.8);
   border-radius: 10px;
-  min-width: 200px;
+  width: 220px;
   flex-wrap: nowrap;
   display: flex;
   flex-wrap: nowrap;
@@ -71,14 +71,12 @@ const TooltipContent = styled(motion.div)`
 
   color: var(--Backgrounds-Primary, #fff);
 
-  font-family: 'San Francisco';
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 111.111% */
 
   &::after {
-    border-bottom: 8px solid #3176b1;
+    border-bottom: 8px solid rgba(49, 118, 177, 0.8);
     border-left: 7px solid white;
     border-right: 7px solid white;
     content: '';
