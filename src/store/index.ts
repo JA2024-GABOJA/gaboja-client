@@ -1,11 +1,11 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type State = {
-  min: number;
-  setMin: (newValue: number) => void;
+	min: number;
+	setMin: (newValue: number) => void;
 };
 
 export const useMinStore = create<State>((set) => ({
-  min: 0,
-  setMin: (newValue) => set({ min: newValue }),
+	min: 60,
+	setMin: (newValue) => set({ min: newValue }),
 }));
