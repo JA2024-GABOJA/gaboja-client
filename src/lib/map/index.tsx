@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import Map, { GeolocateControl, GeolocateResultEvent } from 'react-map-gl';
+import Map, { GeolocateControl } from 'react-map-gl';
 import getDirections from './mbx';
 import DeckGL from '@deck.gl/react';
 import { GeoJsonLayer } from '@deck.gl/layers';
@@ -36,7 +36,7 @@ const MapBox = (props: MapProps) => {
       ],
     })
     .send()
-    .then((response) => {
+    .then((response: any) => {
       const directions = response.body;
       console.log(directions.routes[0]);
       setGeo(directions.routes[0].geometry);
@@ -44,19 +44,6 @@ const MapBox = (props: MapProps) => {
 
   useEffect(() => {
     if (!geo) return;
-    const _layer = new GeoJsonLayer({
-      id: 'GeoJsonLayer',
-      data: {
-        type: 'Feature',
-        ...geo,
-      },
-      filled: true,
-      getLineColor: [160, 160, 160],
-      getLineWidth: 6,
-      getFillColor: [160, 160, 160, 200],
-    });
-
-    setLayer(_layer);
   }, []);
 
   return (
