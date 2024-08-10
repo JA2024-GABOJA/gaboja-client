@@ -9,6 +9,7 @@ const CreateRoutePage = () => {
   return (
     <Layout>
       <FixedTopHeader />
+      <FloatingButton>Start Jup-gging</FloatingButton>
     </Layout>
   );
 };
@@ -78,6 +79,33 @@ const FixedTopHeader = () => {
     </FixedBottomFooter>
   );
 };
+
+const FloatingButton = styled.button`
+  position: fixed;
+  bottom: 25px;
+
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 380px;
+  width: calc(100% - 40px);
+  padding: 28px 80px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 41px;
+  background: var(--main-color, #e56447);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+
+  text-align: center;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 76.923% */
+  letter-spacing: -0.23px;
+`;
 
 const TimeIndicatorWrapper = styled.div`
   padding: 13px 20px;
