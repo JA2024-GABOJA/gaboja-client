@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import FootIcon from '../../assets/icons/FootIcon';
-import Tooltip from '../Tooltip';
-import ProfileIcon from '../../assets/icons/ProfileIcon';
+import Tooltip from '@components/Tooltip';
+import ProfileIcon from '@/assets/icons/ProfileIcon';
 
 const BottomNavigation = () => {
   return (
@@ -125,7 +125,8 @@ const BottomNavigationWrapper = styled.div`
   max-width: 420px;
   display: flex;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 
   width: 100%;
   padding: 13px 44px 21px 43px;
