@@ -1,33 +1,67 @@
-import { Layout } from '@components/layout';
-import styled from '@emotion/styled';
-import ChevronForward from '@/assets/IoChevronForwardOutline.svg?react';
-import PointIcon from '@/assets/icons/PointIcon';
-import dayjs from 'dayjs';
-import ClockIcon from '@/assets/clock.svg?react';
-import MapView from '@components/MapView';
-import { useMinStore } from '@/store';
+import ChevronForward from "@/assets/IoChevronForwardOutline.svg?react";
+import ClockIcon from "@/assets/clock.svg?react";
+import PointIcon from "@/assets/icons/PointIcon";
+import {
+	useCurrentAddress,
+	useCurrentCoordinate,
+	useCurrentPositionLayer,
+	useWalkingPathLayer,
+} from "@/hooks";
+import { Text } from "@chakra-ui/react";
+import MapView from "@components/MapView";
+import { Layout } from "@components/layout";
+import styled from "@emotion/styled";
+import dayjs from "dayjs";
 
 const CreateRoutePage = () => {
-  return (
-    <Layout $padding={'0'}>
-      <FixedTopHeader />
-      <MapView
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-        }}
-        defaultCoordinate={{ latitude: 36.032, longitude: 129.365 }}
-        zoom={15}
-      />
+	const { currentCoordinate } = useCurrentCoordinate();
+	const { currentAddress } = useCurrentAddress({
+		currentCoordinate,
+	});
 
-      <FloatingButton>Start Jup-gging</FloatingButton>
-    </Layout>
-  );
+	const { pathLoading, walkingPathPoints, layers } = useWalkingPathLayer({
+		coordinates: [currentCoordinate.latitude, currentCoordinate.longitude],
+		walkingDurationSeconds: 60 * 60 * 2,
+	});
+	const positionLayer = useCurrentPositionLayer({
+		latitude: currentCoordinate.latitude,
+		longitude: currentCoordinate.longitude,
+	});
+
+	const allLayers = [...layers, ...positionLayer];
+
+	return (
+		<Layout $padding={"0"}>
+			<FixedHeader>
+				<HeaderContainer>
+					<AddressText>
+						<ChevronForward />
+						<PointIcon color={"#FFFFFF"} />
+
+						<Text>{currentAddress?.join(", ")}</Text>
+					</AddressText>
+					<TimeIndicator startTime={new Date().getTime()} duration={45} />
+				</HeaderContainer>
+				<CountHeart number={3} />
+			</FixedHeader>
+			<MapView
+				style={{
+					width: "100%",
+					height: "100%",
+					position: "relative",
+				}}
+				defaultCoordinate={currentCoordinate}
+				zoom={15}
+				layers={allLayers}
+			/>
+
+			<FloatingButton>Start Jup-gging</FloatingButton>
+		</Layout>
+	);
 };
 
 const CountHeart = ({ number }: { number: number }) => {
-  return <StyledCountHeart>Discover {number} hearts!</StyledCountHeart>;
+	return <StyledCountHeart>Discover {number} hearts!</StyledCountHeart>;
 };
 
 const StyledCountHeart = styled.div`
@@ -52,29 +86,29 @@ const StyledCountHeart = styled.div`
 export default CreateRoutePage;
 
 interface TimeIndicatorProps {
-  startTime: number;
-  duration: number;
+	startTime: number;
+	duration: number;
 }
 
 const TimeIndicator = ({ startTime, duration }: TimeIndicatorProps) => {
-  const date = dayjs(startTime).format('HH:mm A');
+	const date = dayjs(startTime).format("HH:mm A");
 
-  const endDate = dayjs(startTime).add(duration, 'minute').format('HH:mm A');
+	const endDate = dayjs(startTime).add(duration, "minute").format("HH:mm A");
 
-  return (
-    <TimeIndicatorWrapper>
-      <TimeTextWrapper>
-        <p>{date}</p>
-        <p>-</p>
-        <p>{endDate}</p>
-      </TimeTextWrapper>
-      <Divider />
-      <DurationText>
-        <ClockIcon />
-        <p>{duration}</p>
-      </DurationText>
-    </TimeIndicatorWrapper>
-  );
+	return (
+		<TimeIndicatorWrapper>
+			<TimeTextWrapper>
+				<p>{date}</p>
+				<p>-</p>
+				<p>{endDate}</p>
+			</TimeTextWrapper>
+			<Divider />
+			<DurationText>
+				<ClockIcon />
+				<p>{duration}</p>
+			</DurationText>
+		</TimeIndicatorWrapper>
+	);
 };
 
 const DurationText = styled.div`
@@ -100,24 +134,6 @@ const TimeTextWrapper = styled.div`
   font-weight: 700;
   line-height: 20px; /* 100% */
 `;
-
-const FixedTopHeader = () => {
-  const { min } = useMinStore();
-  return (
-    <FixedHeader>
-      <HeaderContainer>
-        <AddressText>
-          <ChevronForward />
-          <PointIcon color={'#FFFFFF'} />
-
-          <p>2 Sangdaero, Namgu, Pohang-si</p>
-        </AddressText>
-        <TimeIndicator startTime={new Date().getTime()} duration={min} />
-      </HeaderContainer>
-      <CountHeart number={3} />
-    </FixedHeader>
-  );
-};
 
 const FloatingButton = styled.button`
   position: fixed;
