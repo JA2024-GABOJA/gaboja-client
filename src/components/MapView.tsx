@@ -1,50 +1,47 @@
-import { GeoJsonLayer } from "@deck.gl/layers";
+import { Box } from "@chakra-ui/react";
+import type { GeoJsonLayer } from "@deck.gl/layers";
 import { DeckGL } from "@deck.gl/react";
-import { useEffect, useRef, useState } from "react";
 import { Map as MapGL } from "react-map-gl";
-import { useWalkingPath } from "../hooks";
-const DEFAULT_COORDINATES: [number, number] = [36.013493, 129.349714];
-const DEFAULT_DURATION_SECOND = 60*60*2;
+import type { ICoordinate } from "../types";
 
+interface IMapBoxProps {
+	defaultCoordinate: ICoordinate;
+	style: Partial<CSSStyleDeclaration>;
+	zoom: number;
+	layers?: GeoJsonLayer[];
+}
 
-const MapBox = () => {
-	const token = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
-	const geoControlRef = useRef<mapboxgl.GeolocateControl | null>(null);
-  const {pathLoading, walkingPathPoints, routeFeature} = useWalkingPath({coordinates: DEFAULT_COORDINATES, walkingDurationSeconds: DEFAULT_DURATION_SECOND});
-  const [layers, setLayers] = useState<GeoJsonLayer[]>([]);
-	
-  useEffect(() => {
-    console.log(routeFeature);
-    setLayers([
-      new GeoJsonLayer({
-        id: "route",
-        data: routeFeature,
-        stroked: true,
-        filled: false,
-        lineWidthMinPixels: 4,
-        getLineColor: [255, 0, 255, 255],
-      }),
-    ]);
-  }, [routeFeature]);
-
+function MapView({
+	defaultCoordinate: { latitude, longitude },
+	style,
+	zoom,
+	layers = [],
+}: IMapBoxProps) {
 	return (
-		<DeckGL
-      style={{ width: "600px", height: "400px" }}
-      initialViewState={{
-        latitude: DEFAULT_COORDINATES[0],
-        longitude: DEFAULT_COORDINATES[1],
-        zoom: 15,
-      }}
-      controller
-      layers={layers}
-      >
-        <MapGL
-          mapStyle={`mapbox://styles/mapbox/streets-v9`}
-          mapboxAccessToken={token}
-          attributionControl={false}
-          />
-      </DeckGL>
+		<Box
+			width={style.width}
+			height={style.height}
+			borderRadius={style.borderRadius}
+			overflow={"hidden"}
+		>
+			<DeckGL
+				style={{ width: "100%", height: "100%", position: "relative" }}
+				layers={layers}
+				initialViewState={{
+					latitude,
+					longitude,
+					zoom,
+				}}
+				controller
+			>
+				<MapGL
+					mapStyle={"mapbox://styles/mapbox/streets-v9"}
+					mapboxAccessToken={import.meta.env.VITE_MAPBOX_ACCESS_TOKEN}
+					attributionControl={false}
+				/>
+			</DeckGL>
+		</Box>
 	);
-};
+}
 
-export default MapBox;
+export default MapView;
