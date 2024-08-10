@@ -14,10 +14,6 @@ export default defineConfig({
 		react({
 			jsxImportSource: "@emotion/react",
 		}),
-		svgr({
-			svgrOptions: {
-				icon: true,
-			},
-		}),
+		svgr(),
 	],
 });
