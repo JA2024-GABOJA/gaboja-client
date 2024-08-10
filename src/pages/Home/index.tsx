@@ -6,7 +6,13 @@ import ChevronIcon from '../../assets/icons/ChevronIcon';
 import PointIcon from '../../assets/icons/PointIcon';
 import { DEFAULT_COORDINATES } from '@/constants';
 import useGetAddress from '@/hooks/useGetAddress';
-
+const Background = styled.img`
+  position: absolute;
+  width: 100dvh;
+  left: 0;
+  top: 0;
+  z-index: 1;
+`;
 const HomePage = () => {
   const { data } = useGetAddress({
     latitude: DEFAULT_COORDINATES[0],
@@ -15,23 +21,31 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <AddressText>
-        <PointIcon /> {data.split(',').slice(0, 2).join(',')}
-      </AddressText>
+      <Background src={'./home.png'} />
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+        }}
+      >
+        <AddressText>
+          <PointIcon /> {data[0]}
+        </AddressText>
 
-      <WeatherBanner />
-      <BottomNavigation />
-      <HomeTitle>
-        Hello, <strong>Mr.Kim</strong>!
-        <br /> It's a nice day today
-      </HomeTitle>
-      <SubTitleButton>
-        Should we check the hearts
-        <br />
-        <p>
-          collected yesterday? <ChevronIcon />
-        </p>
-      </SubTitleButton>
+        <WeatherBanner />
+        <BottomNavigation />
+        <HomeTitle>
+          Hello, <strong>Mr.Kim</strong>!
+          <br /> It's a nice day today
+        </HomeTitle>
+        <SubTitleButton>
+          Should we check the hearts
+          <br />
+          <p>
+            collected yesterday? <ChevronIcon />
+          </p>
+        </SubTitleButton>
+      </div>
     </Layout>
   );
 };

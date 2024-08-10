@@ -5,6 +5,7 @@ import PointIcon from '@/assets/icons/PointIcon';
 import dayjs from 'dayjs';
 import ClockIcon from '@/assets/clock.svg?react';
 import MapView from '@components/MapView';
+import { useMinStore } from '@/store';
 
 const CreateRoutePage = () => {
   return (
@@ -101,6 +102,7 @@ const TimeTextWrapper = styled.div`
 `;
 
 const FixedTopHeader = () => {
+  const { min } = useMinStore();
   return (
     <FixedHeader>
       <HeaderContainer>
@@ -110,7 +112,7 @@ const FixedTopHeader = () => {
 
           <p>2 Sangdaero, Namgu, Pohang-si</p>
         </AddressText>
-        <TimeIndicator startTime={new Date().getTime()} duration={45} />
+        <TimeIndicator startTime={new Date().getTime()} duration={min} />
       </HeaderContainer>
       <CountHeart number={3} />
     </FixedHeader>

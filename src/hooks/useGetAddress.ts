@@ -11,7 +11,7 @@ const useGetAddress = ({ latitude, longitude }: ICoordinate) => {
         longitude,
       }),
 
-    initialData: '',
+    initialData: ['', ''],
   });
 };
 
