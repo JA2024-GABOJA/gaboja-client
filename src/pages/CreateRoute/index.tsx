@@ -6,7 +6,9 @@ import {
 	useCurrentCoordinate,
 	useCurrentPositionLayer,
 	useWalkingPathLayer,
+	useWalkingPathPoints,
 } from "@/hooks";
+import { useMinStore } from "@/store";
 import { Text } from "@chakra-ui/react";
 import MapView from "@components/MapView";
 import { Layout } from "@components/layout";
@@ -18,18 +20,24 @@ const CreateRoutePage = () => {
 	const { currentAddress } = useCurrentAddress({
 		currentCoordinate,
 	});
+	const walkingDurationMinutes = useMinStore((state) => state.min);
 
-	const { pathLoading, walkingPathPoints, layers } = useWalkingPathLayer({
-		coordinates: [currentCoordinate.latitude, currentCoordinate.longitude],
-		walkingDurationSeconds: 60 * 60 * 2,
+	const { walkingPathPoints } = useWalkingPathPoints({
+		currentCoordinate,
+		walkingDurationSeconds: walkingDurationMinutes * 60,
 	});
+
+	const { layers: pathLayer, pathLoading } = useWalkingPathLayer({
+		walkingPathPoints: walkingPathPoints ?? [],
+	});
+
 	const positionLayer = useCurrentPositionLayer({
 		latitude: currentCoordinate.latitude,
 		longitude: currentCoordinate.longitude,
 	});
 
-	const allLayers = [...layers, ...positionLayer];
-
+	const allLayers = [...pathLayer, ...positionLayer];
+	console.log(pathLayer);
 	return (
 		<Layout $padding={"0"}>
 			<FixedHeader>
