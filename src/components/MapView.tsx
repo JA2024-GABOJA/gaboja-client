@@ -23,6 +23,7 @@ function MapView({
 			height={style.height}
 			borderRadius={style.borderRadius}
 			overflow={"hidden"}
+			minH={"200px"}
 		>
 			<DeckGL
 				style={{ width: "100%", height: "100%", position: "relative" }}
