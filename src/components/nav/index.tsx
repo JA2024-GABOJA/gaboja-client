@@ -93,23 +93,6 @@ const StartButton = () => {
   );
 };
 
-const StyledTooltip = styled(Tooltip)`
-  padding: 21px;
-  background-color: #3176b1;
-  border-radius: 10px;
-
-  color: var(--Backgrounds-Primary, #fff);
-
-  text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
-  font-family: AppleSDGothicNeoB00;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 111.111% */
-  letter-spacing: -0.23px;
-`;
-
 const StartButtonWrapper = styled.div`
   position: absolute;
   bottom: 30%;

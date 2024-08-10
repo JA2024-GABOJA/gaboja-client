@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Layout = styled.div`
   max-width: 420px;
@@ -11,5 +11,5 @@ export const Layout = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 `;
