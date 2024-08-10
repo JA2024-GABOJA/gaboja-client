@@ -223,6 +223,14 @@
     "@math.gl/web-mercator" "^4.0.0"
     earcut "^2.2.4"
 
+"@deck.gl/mapbox@^9.0.27":
+  version "9.0.27"
+  resolved "https://registry.yarnpkg.com/@deck.gl/mapbox/-/mapbox-9.0.27.tgz#25b4a7f950d8f931c52f3c562fd224cee5b4aa34"
+  integrity sha512-s33A8p1jIutSAy1+29U8LuQn+VR84In2bBxunHfYy/8LvkXfqDcuNGmQraV994Ev3SkUv02nR3Adsx4NB1GBfg==
+  dependencies:
+    "@luma.gl/constants" "^9.0.15"
+    "@math.gl/web-mercator" "^4.0.0"
+
 "@deck.gl/react@^9.0.27":
   version "9.0.27"
   resolved "https://registry.yarnpkg.com/@deck.gl/react/-/react-9.0.27.tgz#2f9e0606fb71d0538b3629920dec6d07c3b00030"
@@ -538,7 +546,7 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@loaders.gl/core@^4.2.0":
+"@loaders.gl/core@^4.2.0", "@loaders.gl/core@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@loaders.gl/core/-/core-4.2.2.tgz#36b30b364fe95bcfdbe4a493f6497425aa644b74"
   integrity sha512-d3YElSsqL29MaiOwzGB97v994SPotbTvJnooCqoQsYGoYYrECdIetv1/zlfDsh5UB2Wl/NaUMJrzyOqlLmDz5Q==
@@ -581,7 +589,7 @@
   resolved "https://registry.yarnpkg.com/@luma.gl/constants/-/constants-9.0.23.tgz#81e18a5680aa45dc06fe0b9ef9efd7a0fd70351b"
   integrity sha512-s/ZhIyEQMisXYj8HCMywcSyem5b8XbVzGPeiftG0k52Nm8+I6Z7cSrF8B88B7GoHVJylwaKyPMXGSXy19STz4w==
 
-"@luma.gl/core@^9.0.15":
+"@luma.gl/core@^9.0.15", "@luma.gl/core@^9.0.23":
   version "9.0.23"
   resolved "https://registry.yarnpkg.com/@luma.gl/core/-/core-9.0.23.tgz#1e0fd93065535a73410946c059d4af1c6d60044d"
   integrity sha512-7ZU5lKaIfpkqIIL/fF4vLqfeAo1VyFCdHz9MdcKmKFKig7QE6B97BygiVUOwRgOCgrxIpdMZS16JeKIiZFVdwQ==
