@@ -1,4 +1,4 @@
-import { IconLayer } from "@deck.gl/layers";
+import { type GeoJsonLayer, IconLayer } from "@deck.gl/layers";
 import type { ICoordinate } from "../types";
 
 function useCurrentPositionLayer(coordinates: ICoordinate) {
@@ -23,7 +23,7 @@ function useCurrentPositionLayer(coordinates: ICoordinate) {
 			getColor: [0, 0, 255],
 			sizeScale: 1,
 			pickable: true,
-		}) as IconLayer,
+		}) as unknown as GeoJsonLayer,
 	];
 }
 

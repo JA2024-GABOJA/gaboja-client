@@ -10,7 +10,6 @@ import {
 } from "@/utils";
 import { Box, Text } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 
 function Make() {
 	const { data: currentCoordinate, isLoading: isCoordinateLoading } = useQuery({
@@ -34,9 +33,6 @@ function Make() {
 
 	const loading = isCoordinateLoading || isAddressLoading;
 
-	useEffect(() => {
-		console.log(currentAddress);
-	}, [currentAddress]);
 	return (
 		<Layout>
 			{loading ? (
