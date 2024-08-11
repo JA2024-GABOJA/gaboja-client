@@ -6,7 +6,7 @@ export const Layout = styled.div<{
 }>`
   max-width: 420px;
   background-color: #fff;
-  height: 100svh;
+  min-height: 100svh;
   margin: 0 auto;
   padding: ${(props) => props.$padding || '24px'};
 

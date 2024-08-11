@@ -27,6 +27,8 @@ import TimerIcon from '@/assets/timer.svg?react';
 import HeartIcon from '@/assets/heart.svg?react';
 import dayjs from 'dayjs';
 import useTimer from '@/hooks/useTimer';
+import { getPOIImage } from '@/apis';
+import { useQuery } from '@tanstack/react-query';
 
 export enum JuggingStatus {
   start = 'start',
@@ -92,6 +94,14 @@ const CreateRoutePage = () => {
   });
 
   const { modal, onCloseModal } = useModalState();
+
+  const { data } = useQuery({
+    queryKey: ['user', `${modal?.id}`],
+    queryFn: () => getPOIImage(modal?.id || 0),
+    enabled: false,
+  });
+
+  console.log(data);
 
   const { time, onStart } = useTimer();
 
@@ -188,7 +198,7 @@ const CreateRoutePage = () => {
         layers={allLayers}
       />
       <Modal
-        isOpen={status === JuggingStatus.jugging && modal === 'target'}
+        isOpen={status === JuggingStatus.jugging && modal?.type === 'target'}
         onClose={onCloseModal}
       >
         <ModalOverlay />
