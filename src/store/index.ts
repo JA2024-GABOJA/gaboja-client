@@ -11,8 +11,14 @@ export const useMinStore = create<State>((set) => ({
 }));
 
 type ModalState = {
-  modal: 'destination' | 'target' | null;
-  openModal: (newValue: 'destination' | 'target') => void;
+  modal: {
+    type: 'destination' | 'target';
+    id?: number;
+  } | null;
+  openModal: (newValue: {
+    type: 'destination' | 'target';
+    id?: number;
+  }) => void;
   onCloseModal: () => void;
 };
 

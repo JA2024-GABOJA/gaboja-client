@@ -25,6 +25,7 @@ export default function useCoordinatesLayer(coordinates: IWalkingPathPoint[]) {
     data: coordinates.map((coordinate) => ({
       position: [coordinate.longitude, coordinate.latitude],
       type: coordinate.type,
+      id: coordinate.type === 'target' ? coordinate.id : undefined,
     })),
     getIcon: (coordinate) => ({
       url: `data:image/svg+xml;charset=utf-8,${
@@ -36,7 +37,10 @@ export default function useCoordinatesLayer(coordinates: IWalkingPathPoint[]) {
     onClick: (e) => {
       const type = e.object.type as null | 'destination' | 'target';
       if (type === 'target' || type === 'destination') {
-        openModal(type);
+        openModal({
+          type,
+          id: e.object.id,
+        });
       }
     },
     sizeScale: 1,
