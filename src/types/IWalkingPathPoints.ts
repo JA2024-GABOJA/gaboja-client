@@ -3,8 +3,13 @@ interface IBaseWalkingPathPoint {
 	longitude: number;
 }
 
-interface ICurrentOrTargetPoint extends IBaseWalkingPathPoint {
-	type: "current" | "target";
+interface ICurrentPoint extends IBaseWalkingPathPoint {
+	type: "current";
+}
+
+interface ITargetPoint extends IBaseWalkingPathPoint {
+	type: "target";
+	id: number;
 }
 
 interface IDestinationPoint extends IBaseWalkingPathPoint {
@@ -13,6 +18,6 @@ interface IDestinationPoint extends IBaseWalkingPathPoint {
 	address: string;
 }
 
-type IWalkingPathPoint = ICurrentOrTargetPoint | IDestinationPoint;
+type IWalkingPathPoint = ITargetPoint | ICurrentPoint | IDestinationPoint;
 
 export type { IBaseWalkingPathPoint, IWalkingPathPoint };
