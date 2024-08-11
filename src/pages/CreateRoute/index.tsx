@@ -188,7 +188,7 @@ const CreateRoutePage = () => {
         layers={allLayers}
       />
       <Modal
-        isOpen={modal === 'target' && status === JuggingStatus.jugging}
+        isOpen={status === JuggingStatus.jugging && modal === 'target'}
         onClose={onCloseModal}
       >
         <ModalOverlay />
@@ -231,6 +231,49 @@ const CreateRoutePage = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+      {/* <Modal
+        isOpen={modal === 'target' && status === JuggingStatus.jugging}
+        onClose={onCloseModal}
+      >
+        <ModalOverlay />
+        <ModalContent
+          minWidth={'300px'}
+          style={{
+            position: 'relative',
+            padding: '20px',
+            backgroundColor: '#E56447',
+            top: '20%',
+            maxWidth: '330px',
+          }}
+        >
+          <HeartIconImage src="heart.png" />
+          <ModalCloseButton />
+          <ModalBody
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              padding: '20px',
+              gap: '9px',
+            }}
+          >
+            <Title>Successfully</Title>
+            <Subtitle>Picked up!</Subtitle>
+            <Button bg={'#C5C5C5'} onClick={onCloseModal}>
+                Do it later
+              </Button>
+            <ButtonGroup>
+              <Button bg={'#C5C5C5'} onClick={onCloseModal}>
+                Do it later
+              </Button>
+              <Button bg={'#E56447'} onClick={onCloseModal}>
+                Pick up
+              </Button>
+            </ButtonGroup>
+          </ModalBody>
+        </ModalContent>
+      </Modal> */}
     </Layout>
   );
 };
