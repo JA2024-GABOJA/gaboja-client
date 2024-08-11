@@ -5,13 +5,20 @@ import {
   useWalkingPathPoints,
 } from '@/hooks';
 import useCoordinatesLayer from '@/hooks/useCoordinatesLayer';
-import { useMinStore } from '@/store';
+import { useMinStore, useModalState } from '@/store';
 import MapView from '@components/MapView';
 import { Layout } from '@components/layout';
 import { useMemo } from 'react';
 import { useState } from 'react';
 import StartCreateRoute from './StartCreateRoute';
-import { Button } from '@chakra-ui/react';
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+} from '@chakra-ui/react';
 import { ImEye } from 'react-icons/im';
 import styled from '@emotion/styled';
 import { IoNavigateCircle, IoResize } from 'react-icons/io5';
@@ -84,6 +91,8 @@ const CreateRoutePage = () => {
     walkingPathPoints: walkingPathPoints ?? [],
   });
 
+  const { modal, onCloseModal } = useModalState();
+
   const { time, onStart } = useTimer();
 
   const coordinatesLayer = useCoordinatesLayer(walkingPathPoints ?? []);
@@ -94,6 +103,7 @@ const CreateRoutePage = () => {
     setState(JuggingStatus.jugging);
     onStart();
   };
+
   return (
     <Layout $padding={'0'}>
       {status === JuggingStatus.start && (
@@ -160,6 +170,7 @@ const CreateRoutePage = () => {
           </BottomSheet>
         </>
       )}
+
       <MapView
         style={{
           width: '100%',
@@ -176,9 +187,109 @@ const CreateRoutePage = () => {
         zoom={zoom}
         layers={allLayers}
       />
+      <Modal
+        isOpen={modal === 'target' && status === JuggingStatus.jugging}
+        onClose={onCloseModal}
+      >
+        <ModalOverlay />
+        <ModalContent
+          minWidth={'300px'}
+          style={{
+            position: 'relative',
+            padding: '20px',
+            top: '20%',
+            maxWidth: '330px',
+          }}
+        >
+          <HeartIconImage src="heart.png" />
+          <ModalCloseButton />
+          <ModalBody
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: '20px',
+              fontWeight: 'bold',
+              padding: '20px',
+              gap: '9px',
+            }}
+          >
+            <Title>Please pick up</Title>
+            <Subtitle>
+              <strong>the abandoned heart</strong>
+              <br />
+              in the photo
+            </Subtitle>
+            <StyledImage src="example.png" />
+            <ButtonGroup>
+              <Button bg={'#C5C5C5'} onClick={onCloseModal}>
+                Do it later
+              </Button>
+              <Button bg={'#E56447'} onClick={onCloseModal}>
+                Pick up
+              </Button>
+            </ButtonGroup>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Layout>
   );
 };
+
+const HeartIconImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 69px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+  button {
+    color: var(--gray-white, #f6f6f6);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: 'SF Pro';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 100% */
+    width: 100%;
+  }
+`;
+
+const Title = styled.p`
+  color: #000;
+
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: 'SF Pro';
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 85.714% */
+`;
+
+const Subtitle = styled.p`
+  strong {
+    color: var(--main-color, #e56447);
+  }
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: 'SF Pro';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 510;
+  line-height: 26px; /* 118.182% */
+`;
+
+const StyledImage = styled.img`
+  width: 297px;
+  height: 209px;
+  border-radius: 18px;
+`;
 
 const IconWrapper = styled.div`
   display: flex;
