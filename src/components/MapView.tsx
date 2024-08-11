@@ -1,9 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import type { GeoJsonLayer } from '@deck.gl/layers';
 import { DeckGL } from '@deck.gl/react';
-import { GeolocateControl, Map as MapGL, Marker } from 'react-map-gl';
+import { Map as MapGL } from 'react-map-gl';
 import type { ICoordinate } from '../types';
-import { useRef } from 'react';
 
 interface IMapBoxProps {
   defaultCoordinate: ICoordinate;

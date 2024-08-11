@@ -4,8 +4,7 @@ import { useMinStore } from '@/store';
 import PointIcon from '@/assets/icons/PointIcon';
 
 import dayjs from 'dayjs';
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
-import ChevronIcon from '@/assets/icons/ChevronIcon';
+import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
 const StartCreateRoute = ({

@@ -6,7 +6,6 @@ import ChevronIcon from '../../assets/icons/ChevronIcon';
 import PointIcon from '../../assets/icons/PointIcon';
 import { DEFAULT_COORDINATES } from '@/constants';
 import useGetAddress from '@/hooks/useGetAddress';
-import { useNavigation } from 'react-router-dom';
 
 const Background = styled.img`
   position: absolute;

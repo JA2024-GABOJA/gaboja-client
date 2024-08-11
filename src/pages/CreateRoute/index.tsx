@@ -1,6 +1,3 @@
-import ChevronForward from '@/assets/IoChevronForwardOutline.svg?react';
-import ClockIcon from '@/assets/clock.svg?react';
-import PointIcon from '@/assets/icons/PointIcon';
 import {
   useCurrentAddress,
   useCurrentCoordinate,
@@ -83,7 +80,7 @@ const CreateRoutePage = () => {
     );
   }, [walkingPathPoints]);
 
-  const { layers: pathLayer, pathLoading } = useWalkingPathLayer({
+  const { layers: pathLayer } = useWalkingPathLayer({
     walkingPathPoints: walkingPathPoints ?? [],
   });
 
